@@ -32,7 +32,7 @@ def main():
     n_spaces = len(polys_norm)
 
     idx = 0
-    print("جاري المعالجة وعرض النتائج المباشرة...")
+    print("جاري المعالجة وعرض النتائج ...")
     print("اضغط على حرف 'q' في نافذة العرض لإيقاف المعالجة.")
     
     cv2.namedWindow("المراقبة المباشرة (Real-Time)", cv2.WINDOW_NORMAL)
@@ -69,7 +69,7 @@ def main():
 
     cap.release()
     cv2.destroyAllWindows()
-    print("انتهت المعالجة المباشرة بنجاح.")
+    print("انتهت المعالجة بنجاح.")
 
 if __name__ == "__main__":
     main()

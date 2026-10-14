@@ -42,9 +42,12 @@ class OccupancyAnalyzer:
         states = []
         for i, m in enumerate(self.masks):
             overlap = cv2.countNonZero(cv2.bitwise_and(m, car_mask)) / self.areas[i]
-            self.history[i].append(overlap >= config.OVERLAP_THRESHOLD)
+            is_overlap = overlap >= config.OVERLAP_THRESHOLD
+            self.history[i].append(is_overlap)
             h = self.history[i]
-            states.append(sum(h) > len(h) / 2)
+            # مشغول إذا كان التداخل كافياً في معظم الإطارات أو قوي ومباشر في الإطار الحالي
+            is_occ = (sum(h) > len(h) / 2) or (overlap >= config.OVERLAP_THRESHOLD * 1.5)
+            states.append(bool(is_occ))
         return states
 
     # رسم النتائج على الصورة
